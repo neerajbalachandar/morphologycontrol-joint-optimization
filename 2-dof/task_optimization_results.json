@@ -1,0 +1,112 @@
+[
+  {
+    "N": 1,
+    "lengths": [
+      0.9999999999999999
+    ],
+    "score": 0.11833905951476434,
+    "metrics": {
+      "rms_error": 0.04472838333753695,
+      "max_error": 0.0646132162917099,
+      "tracking_cost": 1.1301752148115798,
+      "control_cost": 1.7688988994230042,
+      "total_cost": 2.899074114234584,
+      "tracking_fraction": 0.29818922225024636,
+      "effort_fraction": 0.29739694848997733,
+      "design_cost": 0.5,
+      "score": 0.11833905951476434,
+      "max_abs_joint_angle": 0.12052341226896914
+    },
+    "solver_status": "Optimization terminated successfully"
+  },
+  {
+    "N": 2,
+    "lengths": [
+      0.5,
+      0.5
+    ],
+    "score": 0.14212351005671653,
+    "metrics": {
+      "rms_error": 0.062421313049586244,
+      "max_error": 0.08707830435887054,
+      "tracking_cost": 2.301857432578694,
+      "control_cost": 2.7739450209679917,
+      "total_cost": 5.075802453546686,
+      "tracking_fraction": 0.2942568916528718,
+      "effort_fraction": 0.5266825439454009,
+      "design_cost": 0.8333333333333334,
+      "score": 0.14212351005671653,
+      "max_abs_joint_angle": 0.1823017115568177
+    },
+    "solver_status": "feasible initial design"
+  },
+  {
+    "N": 3,
+    "lengths": [
+      1.4999999999999993,
+      0.5,
+      0.5
+    ],
+    "score": 0.2468397691870462,
+    "metrics": {
+      "rms_error": 0.10346837402494553,
+      "max_error": 0.14451657202383142,
+      "tracking_cost": 5.936066597261248,
+      "control_cost": 2.3204543145868426,
+      "total_cost": 8.25652091184809,
+      "tracking_fraction": 0.3982499573061013,
+      "effort_fraction": 0.5899730054740017,
+      "design_cost": 1.4166666666666667,
+      "score": 0.2468397691870462,
+      "max_abs_joint_angle": 0.14588180344445015
+    },
+    "solver_status": "Optimization terminated successfully"
+  },
+  {
+    "N": 4,
+    "lengths": [
+      1.1105123436644324,
+      0.8894876563355616,
+      0.5000000000000006,
+      0.5
+    ],
+    "score": 0.3634877469986981,
+    "metrics": {
+      "rms_error": 0.1492908823178434,
+      "max_error": 0.213972662291621,
+      "tracking_cost": 13.104685016823714,
+      "control_cost": 2.4179218740474018,
+      "total_cost": 15.522606890871115,
+      "tracking_fraction": 0.4976362743928114,
+      "effort_fraction": 0.6954023114783847,
+      "design_cost": 1.8333333333333324,
+      "score": 0.3634877469986981,
+      "max_abs_joint_angle": 0.20056196758497663
+    },
+    "solver_status": "Optimization terminated successfully"
+  },
+  {
+    "N": 5,
+    "lengths": [
+      0.5,
+      0.5,
+      1.000000000002087,
+      0.5,
+      0.5
+    ],
+    "score": 0.4661971199148828,
+    "metrics": {
+      "rms_error": 0.193394379971503,
+      "max_error": 0.2728034032740999,
+      "tracking_cost": 21.943365169284167,
+      "control_cost": 2.03256162550064,
+      "total_cost": 23.975926794784808,
+      "tracking_fraction": 0.5765906401102727,
+      "effort_fraction": 0.7128396778905899,
+      "design_cost": 2.1666666666670147,
+      "score": 0.4661971199148828,
+      "max_abs_joint_angle": 0.24762074227364803
+    },
+    "solver_status": "Optimization terminated successfully"
+  }
+]

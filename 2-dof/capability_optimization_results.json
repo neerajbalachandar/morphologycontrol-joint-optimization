@@ -1,0 +1,65 @@
+[
+  {
+    "N": 1,
+    "status": "target_infeasible_in_search",
+    "best_found_lengths": [
+      1.0
+    ],
+    "max_area_found": 10.937807533969178,
+    "max_improvement_found_percent": -38.18025045207884,
+    "required_area": 19.462369833833606
+  },
+  {
+    "N": 2,
+    "status": "feasible",
+    "lengths": [
+      0.6319115709509131,
+      0.5
+    ],
+    "area": 19.46237409702192,
+    "improvement": 10.000024095252469,
+    "cost": 0.8553185951584855,
+    "solver_status": "Optimization terminated successfully"
+  },
+  {
+    "N": 3,
+    "status": "feasible",
+    "lengths": [
+      0.515317040269214,
+      0.5000000000000016,
+      0.5000000000000001
+    ],
+    "area": 19.462369833832,
+    "improvement": 9.999999999990926,
+    "cost": 1.252552840044869,
+    "solver_status": "Optimization terminated successfully"
+  },
+  {
+    "N": 4,
+    "status": "feasible",
+    "lengths": [
+      0.5,
+      0.7186273649280568,
+      0.5000000000000039,
+      0.5000000000000029
+    ],
+    "area": 19.462369838753844,
+    "improvement": 10.000000027808852,
+    "cost": 1.703104560821344,
+    "solver_status": "Optimization terminated successfully"
+  },
+  {
+    "N": 5,
+    "status": "target_infeasible_in_search",
+    "best_found_lengths": [
+      0.5000000002191444,
+      0.5,
+      1.0000000008444192,
+      0.5,
+      0.5
+    ],
+    "max_area_found": 17.699642544128032,
+    "max_improvement_found_percent": 0.037184396191314306,
+    "required_area": 19.462369833833606
+  }
+]
