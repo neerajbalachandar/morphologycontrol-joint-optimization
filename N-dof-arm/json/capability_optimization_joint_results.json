@@ -1,0 +1,115 @@
+{
+  "objective": "minimize normalized design change subject to target reachable-area improvement",
+  "baseline_lengths": [
+    1.0,
+    1.0
+  ],
+  "baseline_area": 17.693063485303277,
+  "target_area": 19.462369833833606,
+  "required_improvement_percent": 10.0,
+  "fixed_total_length": 2.0,
+  "link_bounds": [
+    0.2,
+    2.0
+  ],
+  "best": {
+    "N": 2,
+    "lengths": [
+      1.0577495529610175,
+      0.9422504470389825
+    ],
+    "area": 19.462374058999426,
+    "improvement_percent": 10.000023880351904,
+    "design_change_cost": 0.05774955296101747,
+    "target_met": true
+  },
+  "best_evaluated_candidate_by_N": [
+    {
+      "N": 1,
+      "max_area_evaluated": 4.082589541539386,
+      "max_area_lengths": [
+        2.0
+      ],
+      "target_feasible_candidate": null
+    },
+    {
+      "N": 2,
+      "max_area_evaluated": 36.80705805362339,
+      "max_area_lengths": [
+        1.509390072835196,
+        0.4906099271648039
+      ],
+      "target_feasible_candidate": {
+        "lengths": [
+          1.0577495529610175,
+          0.9422504470389825
+        ],
+        "area": 19.462374058999426,
+        "cost": 0.05774955296101747
+      }
+    },
+    {
+      "N": 3,
+      "max_area_evaluated": 41.303326716217654,
+      "max_area_lengths": [
+        1.4980061460460294,
+        0.22631367949203296,
+        0.2756801744619377
+      ],
+      "target_feasible_candidate": {
+        "lengths": [
+          0.7323798528157224,
+          0.6036638039751754,
+          0.6639563432091022
+        ],
+        "area": 19.741663016828255,
+        "cost": 0.5657131861490556
+      }
+    },
+    {
+      "N": 4,
+      "max_area_evaluated": 35.739344830696176,
+      "max_area_lengths": [
+        1.2619736700488269,
+        0.32739466427346,
+        0.20000000000000007,
+        0.2106316656777132
+      ],
+      "target_feasible_candidate": {
+        "lengths": [
+          0.8101425754354212,
+          0.3638931714238728,
+          0.41850289850837186,
+          0.40746135463233424
+        ],
+        "area": 21.180962601930048,
+        "cost": 1.3101425754354212
+      }
+    },
+    {
+      "N": 5,
+      "max_area_evaluated": 27.031871065605422,
+      "max_area_lengths": [
+        0.20000000000000007,
+        1.2,
+        0.20000000000000007,
+        0.20000000000000007,
+        0.19999999999999973
+      ],
+      "target_feasible_candidate": {
+        "lengths": [
+          0.20000000000000007,
+          1.2,
+          0.20000000000000007,
+          0.20000000000000007,
+          0.19999999999999973
+        ],
+        "area": 27.031871065605422,
+        "cost": 2.3
+      }
+    }
+  ],
+  "solver_success": true,
+  "solver_message": "Optimization terminated successfully.",
+  "function_evaluations": 2220
+}
