@@ -11,6 +11,7 @@ from reachability import output_controllability_gramian, reachable_set
 from task import desired_state, simulate_task, tracking_metrics
 
 HERE = Path(__file__).resolve().parent
+PLOTS_DIR = HERE / "plots"
 
 
 def best_result(filename, key):
@@ -108,6 +109,13 @@ def plot_summary():
     ax_error.legend(fontsize=8)
     ax_u.legend()
     fig_u.tight_layout()
+
+    PLOTS_DIR.mkdir(parents=True, exist_ok=True)
+    summary_path = PLOTS_DIR / "design_comparison.png"
+    tracking_path = PLOTS_DIR / "tracking_and_control.png"
+    fig.savefig(summary_path, dpi=220, bbox_inches="tight")
+    fig_u.savefig(tracking_path, dpi=220, bbox_inches="tight")
+    print(f"Saved plots to {summary_path} and {tracking_path}")
     plt.show()
 
 

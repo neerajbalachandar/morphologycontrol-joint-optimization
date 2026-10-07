@@ -11,6 +11,7 @@ from model import kinematic_points, robot_matrices
 from task import simulate_task
 
 HERE = Path(__file__).resolve().parent
+PLOTS_DIR = HERE / "plots"
 
 
 def best_lengths(filename, key):
@@ -71,12 +72,23 @@ def build_animation():
         clock_text.set_text(f"Tracking motion · t = {data[0][2][frame]:.2f} s")
         return (*lines, *trails, clock_text)
 
-    animation = FuncAnimation(fig, update, frames=len(data[0][2]), interval=40, blit=True)
+    # clock_text belongs to the Figure rather than an Axes. Tk's blitter
+    # cannot determine an axes view for that artist, so redraw the frame
+    # normally instead of asking the backend to blit mixed artist types.
+    animation = FuncAnimation(fig, update, frames=len(data[0][2]), interval=40, blit=False)
     fig.tight_layout(rect=(0, 0.05, 1, 1))
     return fig, animation
 
 
 if __name__ == "__main__":
     fig, animation = build_animation()
-    # Optional export: animation.save(HERE / "morphology_tracking.gif", writer="pillow", fps=25)
+    PLOTS_DIR.mkdir(parents=True, exist_ok=True)
+    video_path = PLOTS_DIR / "morphology_tracking.mp4"
+    try:
+        animation.save(video_path, writer="ffmpeg", fps=25, dpi=150)
+        print(f"Saved animation to {video_path}")
+    except (RuntimeError, FileNotFoundError) as error:
+        gif_path = PLOTS_DIR / "morphology_tracking.gif"
+        animation.save(gif_path, writer="pillow", fps=25, dpi=100)
+        print(f"MP4 export unavailable ({error}); saved GIF to {gif_path}")
     plt.show()
