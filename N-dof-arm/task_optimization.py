@@ -124,9 +124,12 @@ def optimize_fixed_n(n):
             cache[key] = evaluate(x)
         return cache[key][1]
 
+    starts = make_starts(n)
+    initial_lengths = starts[0].copy()
+    _, initial_metrics = evaluate(initial_lengths)
     best = None
     statuses = []
-    for start_id, x0 in enumerate(make_starts(n), start=1):
+    for start_id, x0 in enumerate(starts, start=1):
         # Keep the feasible start as a fallback if a local optimizer stops
         # early on the nonsmooth torque-saturation boundary.
         candidates = [(x0, "feasible initial design")]
@@ -159,6 +162,8 @@ def optimize_fixed_n(n):
                     "lengths": x.copy(),
                     "score": score,
                     "metrics": metrics,
+                    "initial_lengths": initial_lengths.copy(),
+                    "initial_metrics": initial_metrics,
                     "solver_status": status,
                 }
     return best, statuses
@@ -181,6 +186,7 @@ def main():
         m = best["metrics"]
         print(
             f"N={n} | lengths={np.round(best['lengths'], 5)} | "
+            f"initial={np.round(best['initial_lengths'], 5)} | "
             f"tracking RMS={m['rms_error']:.4g} rad | "
             f"torque use={m['effort_fraction']:.3f} | "
             f"max |q|={m['max_abs_joint_angle']:.3f} rad | "
@@ -203,6 +209,8 @@ def main():
             "lengths": r["lengths"].tolist(),
             "score": float(r["score"]),
             "metrics": {key: float(value) for key, value in r["metrics"].items()},
+            "initial_lengths": r["initial_lengths"].tolist(),
+            "initial_metrics": {key: float(value) for key, value in r["initial_metrics"].items()},
             "solver_status": r["solver_status"],
         }
         for r in results
