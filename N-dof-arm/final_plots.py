@@ -5,8 +5,9 @@ Figures saved by this script:
 2. Reachability-only comparison: fixed-N optimum versus dual-N optimum.
 3. Torque-limited LQT tracking from the task optimizer's recorded initial morphology
    and its optimized morphology, with the same N, reference, and actuator limits.
-4. Output controllability Gramian eigenvalues, log determinant, and unit-energy
-   output-reachable ellipsoids for baseline and the two dual optima.
+4. Output controllability Gramian eigenvalues and unit-energy output-reachable
+   ellipsoids for baseline and the two dual optima. Scalar volume measures are
+   printed in the terminal.
 
 The ellipsoid is the centered finite-horizon L2-input reachable ellipsoid
     y.T @ inv(W_y) @ y <= 1,
@@ -263,7 +264,8 @@ def gramian_and_ellipsoid(lengths):
     unit_circle = np.vstack((np.cos(angles), np.sin(angles)))
     # Boundary of {y: y^T W^{-1} y <= 1}; it is centered at the origin.
     boundary = eigenvectors @ np.diag(np.sqrt(eigenvalues)) @ unit_circle
-    return W, eigenvalues, float(logdet), boundary
+    ellipsoid_area = float(np.pi * np.exp(0.5 * logdet))
+    return W, eigenvalues, float(logdet), ellipsoid_area, boundary
 
 
 def plot_gramian_comparison(cap_dual, reach_dual):
@@ -274,26 +276,22 @@ def plot_gramian_comparison(cap_dual, reach_dual):
     ]
     results = [(label, lengths, color, gramian_and_ellipsoid(lengths))
                for label, lengths, color in designs]
-    fig, axes = plt.subplots(1, 3, figsize=(13.2, 4.0), constrained_layout=True)
-    ax_eig, ax_det, ax_ell = axes
-    positions = np.arange(len(results))
-    width = 0.23
-    for idx, (label, _, color, (_, eigs, logdet, boundary)) in enumerate(results):
+    fig, axes = plt.subplots(1, 2, figsize=(9.2, 4.0), constrained_layout=True)
+    ax_eig, ax_ell = axes
+    print("\nOutput controllability Gramian volume measures (SI units):")
+    for label, lengths, color, (_, eigs, logdet, ellipsoid_area, boundary) in results:
         ax_eig.plot([1, 2], eigs, "o-", color=color, label=label)
-        ax_det.scatter(idx, logdet, color=color, s=38, zorder=3)
-        ax_det.annotate(f"{logdet:.2f}", (idx, logdet), xytext=(0, 6),
-                        textcoords="offset points", ha="center", color=color, fontsize=8)
         ax_ell.plot(boundary[0], boundary[1], color=color,
-                    label=f"{label}; N={len(results[idx][1])}")
+                    label=f"{label}; N={len(lengths)}")
+        print(
+            f"  {label:20s} log(det(W_y))={logdet: .6f}; "
+            f"unit-energy ellipsoid area={ellipsoid_area:.6f} m²/s"
+        )
     ax_eig.set_yscale("log")
     ax_eig.set_xticks([1, 2], ["smallest", "largest"])
     ax_eig.set_ylabel("Eigenvalue of $W_y$ (SI units; log scale)")
     ax_eig.set_title(r"Output Gramian eigenvalues, $T=2$ s")
     ax_eig.legend(frameon=False)
-    ax_det.axhline(0.0, color="#777777", linewidth=0.8)
-    ax_det.set_xticks(positions, [item[0] for item in results], rotation=15, ha="right")
-    ax_det.set_ylabel(r"$\log(\det W_y)$ (computed in SI units)")
-    ax_det.set_title("Gramian volume measure")
     ax_ell.set_xlabel(r"$x_{EE}(T)$ [m]")
     ax_ell.set_ylabel(r"$\dot{x}_{EE}(T)$ [m s$^{-1}$]")
     ax_ell.set_title("Unit-energy output ellipsoid")

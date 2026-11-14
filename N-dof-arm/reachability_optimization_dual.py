@@ -14,14 +14,14 @@ from model import robot_matrices, output_matrix
 from reachability import reachable_set
 from design import (
     N_MIN, N_MAX, BASELINE_LENGTHS, BASELINE_TOTAL_LENGTH,
-    TOTAL_MASS, TAU_BUDGET, actuator_limits,
+    TOTAL_MASS, TAU_PER_BASELINE_JOINT, actuator_limits,
 )
 
 T = 2.0
 NT = 250
 NTHETA = 120
 SEED = 7
-MAXITER = 100
+MAXITER = 200
 POPSIZE = 12
 TOL = 1e-10
 HERE = Path(__file__).resolve().parent
@@ -109,7 +109,7 @@ def main():
 
     print("Joint N + link-length reachability optimization")
     print(f"Fixed total length={BASELINE_TOTAL_LENGTH:g} m; dual-study link bounds=[{LENGTH_MIN_DUAL:g}, {LENGTH_MAX_DUAL:g}] m")
-    print(f"Total mass={TOTAL_MASS:g}; total torque budget={TAU_BUDGET:g}; baseline area={baseline_area:.8e}")
+    print(f"Total mass={TOTAL_MASS:g}; per-motor torque limit={TAU_PER_BASELINE_JOINT:g}; baseline area={baseline_area:.8e}")
     result = differential_evolution(
         objective,
         bounds=bounds,

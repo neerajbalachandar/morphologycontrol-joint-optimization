@@ -15,7 +15,7 @@ from model import robot_matrices, output_matrix
 from reachability import reachable_set
 from design import (
     N_MIN, N_MAX, N_BASELINE, BASELINE_LENGTHS, BASELINE_TOTAL_LENGTH,
-    TOTAL_MASS, TAU_BUDGET, actuator_limits,
+    TOTAL_MASS, actuator_limits,
 )
 
 T = 2.0
@@ -23,7 +23,7 @@ NT = 250
 NTHETA = 120
 REQUIRED_IMPROVEMENT = 0.10
 SEED = 11
-MAXITER = 100
+MAXITER = 200
 POPSIZE = 12
 TOL = 1e-10
 HERE = Path(__file__).resolve().parent

@@ -6,7 +6,7 @@ For each N, maximize A_R(p) subject to the same length constraints.
 
 The reachable set is the 2-D end-effector output set
     y(T) = C x(T) = [x_EE(T), xdot_EE(T)]^T
-under |u_i(t)| <= TAU_BUDGET / N.
+under per-motor torque bounds selected by design.actuator_limits(N).
 
 SLSQP is a local optimizer, so multiple initial guesses are used.
 The reported result is the best converged solution found, not a proof
@@ -31,7 +31,8 @@ from design import (
     TOTAL_LENGTH_MAX,
     LENGTH_MIN,
     LENGTH_MAX,
-    TAU_BUDGET,
+    TAU_PER_BASELINE_JOINT,
+    actuator_limits,
 )
 
 T = 2.0
@@ -45,7 +46,7 @@ def evaluate_area(lengths):
     N = len(lengths)
     A, B, *_ = robot_matrices(lengths, total_mass=TOTAL_MASS)
     C = output_matrix(lengths)
-    tau_max = (TAU_BUDGET / N) * np.ones(N)
+    tau_max = actuator_limits(N)
 
     _, _, _, area = reachable_set(
         A, B, C, tau_max,
@@ -157,7 +158,7 @@ print("=" * 72)
 print(f"Baseline lengths        = {BASELINE_LENGTHS}")
 print(f"Baseline total length   = {BASELINE_TOTAL_LENGTH:.6f}")
 print(f"Total mass              = {TOTAL_MASS:.6f}")
-print(f"Total torque budget     = {TAU_BUDGET:.6f}")
+print(f"Per-motor torque limit  = {TAU_PER_BASELINE_JOINT:.6f}")
 print(f"Time horizon            = {T:.3f}")
 print(f"Reachability directions = {NTHETA}")
 print(f"Time quadrature points  = {NT}")

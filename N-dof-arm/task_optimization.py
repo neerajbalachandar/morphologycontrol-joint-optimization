@@ -17,6 +17,7 @@ from design import (
     TASK_EFFORT_WEIGHT,
     REFERENCE_AMPLITUDE,
     MAX_LINEARIZED_ANGLE,
+    TAU_PER_BASELINE_JOINT,
     actuator_limits,
     design_cost,
     feasible_length_interval,
@@ -172,7 +173,7 @@ def optimize_fixed_n(n):
 def main():
     results = []
     print("Task tracking co-design (sampled LQT, torque-limited)")
-    print(f"Horizon={T:g} s, sample interval={DT:g} s, torque budget={2.0:g} N m total")
+    print(f"Horizon={T:g} s, sample interval={DT:g} s, per-motor torque limit={TAU_PER_BASELINE_JOINT:g} N m")
     print(f"Linearized joint-angle envelope: ±{MAX_LINEARIZED_ANGLE:g} rad")
     print("Design cost is normalized to baseline; actuator count has 2× the link-stock weight.")
     print("Score = normalized tracking² + weighted torque use² + weighted design cost")

@@ -2,7 +2,7 @@ import numpy as np
 
 
 # Reference morphology.
-BASELINE_LENGTHS = np.array([1.0, 1.0])
+BASELINE_LENGTHS = np.array([2.0, 2.0])
 N_BASELINE = len(BASELINE_LENGTHS)
 
 BASELINE_TOTAL_LENGTH = np.sum(BASELINE_LENGTHS)
@@ -23,9 +23,12 @@ LENGTH_MAX = 1.5 * BASELINE_MEAN_LENGTH
 TOTAL_LENGTH_MIN = 0.5 * BASELINE_TOTAL_LENGTH
 TOTAL_LENGTH_MAX = 1.5 * BASELINE_TOTAL_LENGTH
 
-# Fixed total actuator authority.
+# Baseline per-motor torque authority. Set SCALE_TORQUE_WITH_JOINT_COUNT=True
+# to restore the earlier fixed-total-budget model, which divides this baseline
+# total equally across all joints.
 TAU_PER_BASELINE_JOINT = 1.0
 TAU_BUDGET = N_BASELINE * TAU_PER_BASELINE_JOINT
+SCALE_TORQUE_WITH_JOINT_COUNT = False
 
 # Relative cost-proxy weights, normalized against the baseline design.
 # The link term represents stock length/packaging, not material mass (total
@@ -44,8 +47,15 @@ MAX_LINEARIZED_ANGLE = 0.35  # rad; keep trajectories near the linearization poi
 
 
 def actuator_limits(N):
-    """Equal allocation of the fixed total torque budget."""
-    return (TAU_BUDGET / N) * np.ones(N)
+    """Per-motor torque bounds under the selected actuator-authority model."""
+    if N < 1:
+        raise ValueError("N must be at least 1.")
+    per_motor_limit = (
+        TAU_BUDGET / N
+        if SCALE_TORQUE_WITH_JOINT_COUNT
+        else TAU_PER_BASELINE_JOINT
+    )
+    return per_motor_limit * np.ones(N)
 
 
 def feasible_length_interval(N):

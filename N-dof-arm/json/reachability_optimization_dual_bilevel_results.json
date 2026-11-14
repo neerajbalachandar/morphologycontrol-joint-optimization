@@ -1,0 +1,232 @@
+{
+  "objective_definition": "Maximize the finite-horizon area of the bounded-input reachable set in the end-effector position-velocity plane [x_EE, xdot_EE].",
+  "optimization_method": "Nested computational decomposition: independent differential-evolution link-length optimization for every feasible integer N, followed by exhaustive comparison of the optimized areas. Both levels use the same area objective; this is not a morphology-controller bilevel optimization.",
+  "global_optimality_note": "Differential evolution is stochastic; successful termination is numerical convergence information, not proof of a global optimum.",
+  "settings": {
+    "N_min": 1,
+    "N_max": 5,
+    "baseline_lengths": [
+      2.0,
+      2.0
+    ],
+    "fixed_total_length": 4.0,
+    "link_bounds": [
+      0.2,
+      4.0
+    ],
+    "total_mass": 2.0,
+    "actuator_limit_policy": "design.actuator_limits(N)",
+    "horizon": 2.0,
+    "reachable_set_directions": 120,
+    "time_quadrature_points": 250,
+    "differential_evolution": {
+      "maxiter": 200,
+      "popsize": 12,
+      "tol": 0.001,
+      "polish": false,
+      "inner_restarts_per_N": 1,
+      "seed_convention": "SEED + (N - N_MIN) * restart_count + restart_index",
+      "base_seed": 7,
+      "initialization": "feasible projected population",
+      "constraint": "L0 - l_max <= sum(l_1..l_(N-1)) <= L0 - l_min"
+    },
+    "validation_tolerance": 1e-08
+  },
+  "baseline_area": 9.482882240127633,
+  "best_overall": {
+    "N": 5,
+    "status": "optimized",
+    "lengths": [
+      0.6985017680464254,
+      2.701322445868343,
+      0.20014892785168992,
+      0.20002668603728568,
+      0.20000017219625565
+    ],
+    "area": 380.0567307697801,
+    "improvement_percent": 3907.8187321734026,
+    "length_sum": 4.0,
+    "length_min": 0.20000017219625565,
+    "length_max": 2.701322445868343,
+    "total_length_residual": 0.0,
+    "optimizer_success": true,
+    "optimizer_message": "Optimization terminated successfully.",
+    "nfev": 2011,
+    "restart_count": 1,
+    "restarts": [
+      {
+        "seed": 11,
+        "optimizer_success": true,
+        "message": "Optimization terminated successfully.",
+        "nfev": 2011,
+        "best_objective": -380.0567307697801,
+        "best_area": 380.0567307697801,
+        "feasible_evaluations": 2011,
+        "evaluation_errors": 0,
+        "evaluation_error_details": []
+      }
+    ]
+  },
+  "results_by_N": [
+    {
+      "N": 1,
+      "status": "optimized",
+      "lengths": [
+        4.0
+      ],
+      "area": 0.3634009903457037,
+      "improvement_percent": -96.16782133170503,
+      "length_sum": 4.0,
+      "length_min": 4.0,
+      "length_max": 4.0,
+      "total_length_residual": 0.0,
+      "optimizer_success": true,
+      "optimizer_message": "Direct evaluation; no continuous optimization needed.",
+      "nfev": 1,
+      "restart_count": 1,
+      "restarts": [
+        {
+          "seed": null,
+          "optimizer_success": true,
+          "message": "Direct evaluation; N=1 has no free length variables.",
+          "nfev": 1,
+          "best_objective": -0.3634009903457037,
+          "best_area": 0.3634009903457037,
+          "feasible_evaluations": 1,
+          "evaluation_errors": 0
+        }
+      ]
+    },
+    {
+      "N": 2,
+      "status": "optimized",
+      "lengths": [
+        3.3965680004986947,
+        0.6034319995013053
+      ],
+      "area": 68.05099280670856,
+      "improvement_percent": 617.6192963648217,
+      "length_sum": 4.0,
+      "length_min": 0.6034319995013053,
+      "length_max": 3.3965680004986947,
+      "total_length_residual": 0.0,
+      "optimizer_success": true,
+      "optimizer_message": "Optimization terminated successfully.",
+      "nfev": 80,
+      "restart_count": 1,
+      "restarts": [
+        {
+          "seed": 8,
+          "optimizer_success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 80,
+          "best_objective": -68.05099280670856,
+          "best_area": 68.05099280670856,
+          "feasible_evaluations": 80,
+          "evaluation_errors": 0,
+          "evaluation_error_details": []
+        }
+      ]
+    },
+    {
+      "N": 3,
+      "status": "optimized",
+      "lengths": [
+        3.3576914305907364,
+        0.4423025881216587,
+        0.20000598128760494
+      ],
+      "area": 175.76106130099845,
+      "improvement_percent": 1753.4561207272025,
+      "length_sum": 4.0,
+      "length_min": 0.20000598128760494,
+      "length_max": 3.3576914305907364,
+      "total_length_residual": 0.0,
+      "optimizer_success": true,
+      "optimizer_message": "Optimization terminated successfully.",
+      "nfev": 451,
+      "restart_count": 1,
+      "restarts": [
+        {
+          "seed": 9,
+          "optimizer_success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 451,
+          "best_objective": -175.76106130099845,
+          "best_area": 175.76106130099845,
+          "feasible_evaluations": 451,
+          "evaluation_errors": 0,
+          "evaluation_error_details": []
+        }
+      ]
+    },
+    {
+      "N": 4,
+      "status": "optimized",
+      "lengths": [
+        0.7391898059463482,
+        2.7061485302674697,
+        0.35464660407922444,
+        0.2000150597069572
+      ],
+      "area": 241.74599315993333,
+      "improvement_percent": 2449.2881493030077,
+      "length_sum": 4.0,
+      "length_min": 0.2000150597069572,
+      "length_max": 2.7061485302674697,
+      "total_length_residual": 0.0,
+      "optimizer_success": true,
+      "optimizer_message": "Optimization terminated successfully.",
+      "nfev": 1061,
+      "restart_count": 1,
+      "restarts": [
+        {
+          "seed": 10,
+          "optimizer_success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 1061,
+          "best_objective": -241.74599315993333,
+          "best_area": 241.74599315993333,
+          "feasible_evaluations": 1061,
+          "evaluation_errors": 0,
+          "evaluation_error_details": []
+        }
+      ]
+    },
+    {
+      "N": 5,
+      "status": "optimized",
+      "lengths": [
+        0.6985017680464254,
+        2.701322445868343,
+        0.20014892785168992,
+        0.20002668603728568,
+        0.20000017219625565
+      ],
+      "area": 380.0567307697801,
+      "improvement_percent": 3907.8187321734026,
+      "length_sum": 4.0,
+      "length_min": 0.20000017219625565,
+      "length_max": 2.701322445868343,
+      "total_length_residual": 0.0,
+      "optimizer_success": true,
+      "optimizer_message": "Optimization terminated successfully.",
+      "nfev": 2011,
+      "restart_count": 1,
+      "restarts": [
+        {
+          "seed": 11,
+          "optimizer_success": true,
+          "message": "Optimization terminated successfully.",
+          "nfev": 2011,
+          "best_objective": -380.0567307697801,
+          "best_area": 380.0567307697801,
+          "feasible_evaluations": 2011,
+          "evaluation_errors": 0,
+          "evaluation_error_details": []
+        }
+      ]
+    }
+  ],
+  "infeasible_joint_counts": []
+}
