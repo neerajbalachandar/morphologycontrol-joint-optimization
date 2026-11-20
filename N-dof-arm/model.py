@@ -1,11 +1,12 @@
 import numpy as np
+from config import CONFIG
 
 
 def robot_matrices(
     lengths,
-    total_mass=2.0,
-    g=9.81,
-    damping=0.05,
+    total_mass=CONFIG.total_mass,
+    g=CONFIG.gravity,
+    damping=CONFIG.viscous_damping,
 ):
     """Linearized N-link planar robot about the downward equilibrium.
 
@@ -15,9 +16,23 @@ def robot_matrices(
     The total robot mass is fixed for every morphology:
         sum_i m_i = total_mass
 
+    Link i has uniform linear density rho=M/sum(l), mass m_i=rho*l_i,
+    centre of mass at l_i/2, and slender-link inertia I_i=m_i*l_i**2/12.
+    Joint angles are relative; link k's absolute angle is sum(q[:k+1]).
+    The centre-of-mass translational Jacobian has horizontal row
+    Jv_x[j]=sum(l[j:k])+l[k]/2 for j<=k, and its angular Jacobian is one
+    for all upstream joints. These Jacobians give
+    M=sum(m_i Jv_i.T Jv_i + I_i Jw_i.T Jw_i). Potential energy is
+    V=sum(m_i*g*y_com_i); its Hessian at the downward equilibrium gives K.
+    Thus M is symmetric positive definite for positive lengths and masses.
+    Damping is the benchmark's diagonal viscous model, D=damping*I.
+
     Dynamics:
         M q_ddot + D q_dot + K q = u
         x_dot = A x + B u
+
+    The input vector is generalized relative-joint torque, so B=[0; M^-1].
+    This rigid-link benchmark is not an exact continuum soft arm.
     """
     lengths = np.asarray(lengths, dtype=float)
     N = len(lengths)
