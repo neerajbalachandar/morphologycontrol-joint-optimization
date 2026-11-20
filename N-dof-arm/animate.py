@@ -15,11 +15,38 @@ def main():
     parser.add_argument("--run-id", required=True)
     args = parser.parse_args()
     run_dir = RESULTS_ROOT / args.run_id
-    metadata = json.loads((run_dir / "metadata.json").read_text())
-    task = json.loads((run_dir / "task_tracking.json").read_text())
-    arrays = np.load(run_dir / "task_tracking_arrays.npz")
+    required = (
+        run_dir / "metadata.json",
+        run_dir / "task_tracking.json",
+        run_dir / "task_tracking_arrays.npz",
+    )
+    missing = [path.name for path in required if not path.is_file()]
+    if missing:
+        if "metadata.json" in missing:
+            raise FileNotFoundError(
+                f"Run {args.run_id!r} is missing {', '.join(missing)} under {run_dir}. "
+                "Create the run first with: python3 reachability_optimization_dual.py "
+                f"--run-id {args.run_id}"
+            )
+        raise FileNotFoundError(
+            f"Run {args.run_id!r} is missing {', '.join(missing)} under {run_dir}. "
+            "Generate the task tracking comparison first with: "
+            f"python3 task_experiment.py --run-id {args.run_id}"
+        )
+    metadata = json.loads(required[0].read_text())
+    task = json.loads(required[1].read_text())
+    arrays = np.load(required[2])
     names = ("baseline", "reachability_optimum", "task_optimum")
-    limit = 1.1 * metadata["study_configuration"]["fixed_total_length"]
+    study = metadata.get("study_configuration", {})
+    total_length = study.get("baseline_total_length", study.get("fixed_total_length"))
+    if total_length is None and "baseline_lengths" in study:
+        total_length = sum(study["baseline_lengths"])
+    if total_length is None or total_length <= 0:
+        raise ValueError(
+            f"Run {args.run_id!r} has no positive baseline total length in its "
+            "study_configuration metadata."
+        )
+    limit = 1.1 * float(total_length)
     fig, axes = plt.subplots(1, 3, figsize=(12, 4.6))
     arms, trails = [], []
     points = {}

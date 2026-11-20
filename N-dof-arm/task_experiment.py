@@ -73,7 +73,12 @@ def main():
         "fixed_n_task_search": [
             {"N": int(item["lengths"].size), "lengths": np.asarray(item["lengths"]).tolist(),
              "objective": float(item["objective"]),
-             "morphology_optimizer_success": bool(item["morphology_optimizer_success"])}
+             "morphology_optimizer_success": bool(
+                 item.get("morphology_optimizer_success", True)
+             ),
+             "morphology_optimizer_message": item.get(
+                 "morphology_optimizer_message", "Direct evaluation; N=1 has no free link lengths."
+             )}
             for item in task_designs
         ],
     }
