@@ -1,0 +1,327 @@
+{
+  "setup": {
+    "baseline_lengths": [
+      0.45,
+      0.45
+    ],
+    "dt": 0.01,
+    "steps": 40,
+    "force_max": 0.3,
+    "r0": [
+      0.002,
+      0.002,
+      0.02,
+      0.02
+    ],
+    "tip_tolerance": 0.003,
+    "tip_speed_scale": 0.05,
+    "length_bounds": [
+      0.3,
+      0.8
+    ],
+    "min_reach_margin": 0.05,
+    "gain_bound": 30.0,
+    "length_cost": 1.0,
+    "gammas": [
+      1.0,
+      0.05,
+      0.01
+    ]
+  },
+  "arm": {
+    "linear_density": 2.0,
+    "motor_mass": 0.4,
+    "payload_mass": 0.25,
+    "damping": 4.0,
+    "stiffness": 0.0,
+    "torque_limits": [
+      1.0,
+      0.5
+    ],
+    "p_star": [
+      0.55,
+      0.35
+    ],
+    "elbow_up": true
+  },
+  "designs": {
+    "Nominal CCD + LQR": {
+      "lengths_m": [
+        0.38451625256113836,
+        0.30000000000000054
+      ],
+      "q0_rad": [
+        0.2942595964096577,
+        0.6246283761381075
+      ],
+      "K": [
+        [
+          -44.937387738800076,
+          -17.432713740662056,
+          -3.278365380086181,
+          -0.8847768960683385
+        ],
+        [
+          -6.019327200342311,
+          -6.3080573712156625,
+          -0.4603125386486132,
+          -0.14027596595756744
+        ]
+      ],
+      "objective_24a": 5.731406699024616,
+      "objective_terms": {
+        "design": 0.760573613956821,
+        "terminal": 1.8243610348292463,
+        "running_state": 3.0214119410600144,
+        "running_input": 0.12506010917853444
+      },
+      "certificate_min_slack": {
+        "safety": -0.18136002805197982,
+        "inputs": 0.6942592666180807,
+        "invariance": -3.7541339154488362,
+        "geometry": 2.279541139182939e-11
+      },
+      "certified": false,
+      "max_safety_usage": 1.1813600280519798,
+      "max_torque_usage": 0.3057407333819193,
+      "terminal_usage": 4.754133915448836,
+      "closed_loop_spectral_radius": 0.9906215114021393,
+      "nominal_scenario_cost": 0.05347478101228346
+    },
+    "Control-only (least violation)": {
+      "lengths_m": [
+        0.45,
+        0.45
+      ],
+      "q0_rad": [
+        -0.19396754121263537,
+        1.521393517472283
+      ],
+      "K": [
+        [
+          -106.26140180387493,
+          -75.42086771021053,
+          -15.117246236673207,
+          -12.611179500615775
+        ],
+        [
+          -24.372068605044372,
+          -70.34211052884679,
+          -4.327711783765526,
+          -11.570749443758029
+        ]
+      ],
+      "objective_24a": 3.3613979355708197,
+      "objective_terms": {
+        "design": 1.0,
+        "terminal": 0.6583534435234518,
+        "running_state": 1.4727762537541116,
+        "running_input": 0.23026823829325643
+      },
+      "certificate_min_slack": {
+        "safety": 0.4369057599073022,
+        "inputs": -0.014795165636506846,
+        "invariance": -0.05326937584814395,
+        "geometry": 0.3305369799252668
+      },
+      "certified": false,
+      "max_safety_usage": 0.5630942400926978,
+      "max_torque_usage": 1.0147951656365068,
+      "terminal_usage": 1.053269375848144,
+      "closed_loop_spectral_radius": 0.9577552934920273,
+      "nominal_scenario_cost": 0.07994049156950689
+    },
+    "Set-based CCD": {
+      "lengths_m": [
+        0.47235693473958534,
+        0.4814982936548482
+      ],
+      "q0_rad": [
+        -0.26186326453048525,
+        1.6367115398062413
+      ],
+      "K": [
+        [
+          -197.20588304093005,
+          -69.0416814968327,
+          -13.9634289048717,
+          -9.411814571244603
+        ],
+        [
+          -36.08829462434859,
+          -75.53707724059947,
+          -3.3872892379335737,
+          -10.450173575571762
+        ]
+      ],
+      "objective_24a": 3.145955578986185,
+      "objective_terms": {
+        "design": 1.0598391426604816,
+        "terminal": 0.5497422660901188,
+        "running_state": 1.3167807872752526,
+        "running_input": 0.21959338296033218
+      },
+      "certificate_min_slack": {
+        "safety": 0.41072493964241596,
+        "inputs": -5.773159728050814e-15,
+        "invariance": -2.9423402203576643e-07,
+        "geometry": 0.41314712921508534
+      },
+      "certified": true,
+      "max_safety_usage": 0.589275060357584,
+      "max_torque_usage": 1.0000000000000058,
+      "terminal_usage": 1.000000294234022,
+      "closed_loop_spectral_radius": 0.9492502322523623,
+      "nominal_scenario_cost": 0.10034906397590897
+    }
+  },
+  "control_only_best_phase1_slack": -0.05326937584814395,
+  "co_design_best_phase1_slack": 0.06496967233097561,
+  "validation": {
+    "Nominal CCD + LQR": {
+      "k_star": 35,
+      "direction": [
+        0.55,
+        0.18201135381706432,
+        0.0,
+        0.0
+      ],
+      "worst_case_peak_mm": 3.5440800841559366,
+      "nonlinear_worst_case_peak_mm": 3.5324343449616435,
+      "support_bound_mm": 3.5440800841559392,
+      "monte_carlo_peak_mm": 2.107811265963362,
+      "tolerance_mm": 3.0
+    },
+    "Control-only (least violation)": {
+      "k_star": 3,
+      "direction": [
+        -0.34999999999999987,
+        -0.4367390932611643,
+        0.0,
+        0.0
+      ],
+      "worst_case_peak_mm": 1.6892827202780936,
+      "nonlinear_worst_case_peak_mm": 1.6876241726688779,
+      "support_bound_mm": 1.6892827202780936,
+      "monte_carlo_peak_mm": 1.6800232819212437,
+      "tolerance_mm": 3.0
+    },
+    "Set-based CCD": {
+      "k_star": 2,
+      "direction": [
+        -0.3499999999999999,
+        -0.47228411505744017,
+        0.0,
+        0.0
+      ],
+      "worst_case_peak_mm": 1.7678251810727519,
+      "nonlinear_worst_case_peak_mm": 1.7662525429972264,
+      "support_bound_mm": 1.7678251810727523,
+      "monte_carlo_peak_mm": 1.7678251810727519,
+      "tolerance_mm": 3.0
+    }
+  },
+  "multistart_logs": {
+    "control_only": [
+      {
+        "start": 0,
+        "phase1_slack": -0.05326937584814395,
+        "seconds": 6.1
+      },
+      {
+        "start": 1,
+        "phase1_slack": -0.05335791683935476,
+        "seconds": 15.5
+      },
+      {
+        "start": 2,
+        "phase1_slack": -0.05336902409446065,
+        "seconds": 10.4
+      }
+    ],
+    "co_design": [
+      {
+        "start": 0,
+        "phase1_slack": 0.06496967233097561,
+        "objective": 3.8137109261054825,
+        "certificate": -6.1058463555419e-05,
+        "message": "Positive directional derivative for linesearch",
+        "iterations": 150,
+        "seconds": 33.3
+      },
+      {
+        "start": 1,
+        "phase1_slack": 0.0649429512765406,
+        "objective": 3.813732371315099,
+        "certificate": -3.5990921625872474e-05,
+        "message": "Iteration limit reached",
+        "iterations": 400,
+        "seconds": 52.2
+      },
+      {
+        "start": 2,
+        "phase1_slack": 0.06496725771585643,
+        "objective": 3.8137160924768416,
+        "certificate": -0.3615431500059507,
+        "message": "Inequality constraints incompatible",
+        "iterations": 197,
+        "seconds": 30.0
+      },
+      {
+        "start": 3,
+        "phase1_slack": 0.06491195649609716,
+        "objective": 3.8134470527337125,
+        "certificate": -0.0001345295144750125,
+        "message": "Positive directional derivative for linesearch",
+        "iterations": 288,
+        "seconds": 36.9
+      },
+      {
+        "start": 4,
+        "phase1_slack": 0.06494772009992233,
+        "objective": 3.145955578986185,
+        "certificate": -2.9423402203576643e-07,
+        "message": "Positive directional derivative for linesearch",
+        "iterations": 141,
+        "seconds": 22.6
+      },
+      {
+        "start": 5,
+        "phase1_slack": 0.06496812764028992,
+        "objective": 3.8137389054407267,
+        "certificate": -1.834731976568804e-05,
+        "message": "Positive directional derivative for linesearch",
+        "iterations": 223,
+        "seconds": 31.2
+      },
+      {
+        "start": 6,
+        "phase1_slack": 0.06460775949412156,
+        "objective": 3.810582779651389,
+        "certificate": -3.3871413140929008e-06,
+        "message": "Positive directional derivative for linesearch",
+        "iterations": 369,
+        "seconds": 43.3
+      },
+      {
+        "start": 7,
+        "phase1_slack": 0.06496856443322097,
+        "objective": 3.813720915848031,
+        "certificate": -3.071563853818127e-05,
+        "message": "Positive directional derivative for linesearch",
+        "iterations": 256,
+        "seconds": 32.9
+      },
+      {
+        "start": 8,
+        "phase1_slack": 0.06493350955680388,
+        "objective": 3.1469727043903495,
+        "certificate": -2.0984865956030774e-07,
+        "message": "Iteration limit reached",
+        "iterations": 400,
+        "seconds": 50.4
+      }
+    ]
+  },
+  "runtime_s": 375.1
+}

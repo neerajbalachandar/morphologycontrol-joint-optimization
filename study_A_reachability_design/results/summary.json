@@ -1,0 +1,248 @@
+{
+  "settings": {
+    "horizon_s": 0.5,
+    "baseline_lengths_m": [
+      0.45,
+      0.45
+    ],
+    "bound_factors": [
+      0.5,
+      1.5
+    ],
+    "min_reach_margin": 0.05,
+    "required_gain": 0.1,
+    "p_norm": 6.0,
+    "lp_radius_normalized_inputs": 1.0,
+    "time_samples": 401,
+    "costate_directions": 2048,
+    "grid": 31,
+    "one_link_length_m": 0.9,
+    "arm": {
+      "linear_density": 2.0,
+      "motor_mass": 0.4,
+      "payload_mass": 0.25,
+      "damping": 4.0,
+      "stiffness": 0.0,
+      "torque_limits": [
+        1.0,
+        0.5
+      ],
+      "p_star": [
+        0.55,
+        0.35
+      ],
+      "elbow_up": true
+    }
+  },
+  "A1_theorem2": {
+    "assumptions": {
+      "dimension_2": true,
+      "single_input": true,
+      "real_eigenvalues": true,
+      "distinct": true,
+      "eigenvalues": [
+        0.0,
+        -5.809731299927377
+      ]
+    },
+    "exact_area": 0.05049410987034309,
+    "sampled_bang_bang_area": 0.050487902520727594,
+    "zonotope_inner_area": {
+      "5": 0.04821906671373851,
+      "20": 0.05035150869764116
+    },
+    "max_switches_one_link": 1,
+    "switch_histogram_two_link": [
+      3256,
+      3984,
+      952
+    ]
+  },
+  "A2_A3_lp": {
+    "samples": 1525,
+    "inside_fraction": 0.5337704918032787,
+    "prop2_bound_lam0_q_norm_q": 0.1407502803848488,
+    "prop2_max_cost": 0.8633922690463915,
+    "l6_area_sampled_inside_hull": 0.06648794904154477,
+    "linf_area_zonotope40": 0.050458719645962005
+  },
+  "designs": {
+    "baseline": {
+      "lengths": [
+        0.45,
+        0.45
+      ],
+      "cost_l1_plus_l2": 0.9,
+      "cost_change_percent": 0.0,
+      "total_mass_kg": 2.45,
+      "reach_margin": 0.3805369799252668,
+      "ratios": {
+        "trace": 1.0,
+        "vol_l6": 1.0,
+        "vol_linf": 1.0
+      },
+      "absolute": {
+        "trace": 0.157346188294065,
+        "vol_l6": 0.00016594999465829505,
+        "vol_linf": 0.00010003317689438488
+      }
+    },
+    "A4": {
+      "lengths": [
+        0.3422581262725099,
+        0.3422581262725099
+      ],
+      "cost_l1_plus_l2": 0.6845162525450198,
+      "cost_change_percent": -23.94263860610891,
+      "total_mass_kg": 2.0190325050900397,
+      "reach_margin": 0.04999999999806983,
+      "ratios": {
+        "trace": 1.2036596976864442,
+        "vol_l6": 0.17952278068760746,
+        "vol_linf": 0.16559441250901447
+      },
+      "absolute": {
+        "trace": 0.18939126543414858,
+        "vol_l6": 2.9791804496150734e-05,
+        "vol_linf": 1.6564935159235984e-05
+      }
+    },
+    "A5": {
+      "lengths": [
+        0.43507657174183,
+        0.5093345937048603
+      ],
+      "cost_l1_plus_l2": 0.9444111654466903,
+      "cost_change_percent": 4.934573938521147,
+      "total_mass_kg": 2.538822330893381,
+      "reach_margin": 0.448660597948306,
+      "ratios": {
+        "trace": 0.951968700772389,
+        "vol_l6": 1.0999999998677057,
+        "vol_linf": 1.1538443786388044
+      },
+      "absolute": {
+        "trace": 0.14978864644178874,
+        "vol_l6": 0.00018254499410217033,
+        "vol_linf": 0.00011542271883696712
+      }
+    },
+    "A6": {
+      "lengths": [
+        0.3961486861611937,
+        0.5213393608694495
+      ],
+      "cost_l1_plus_l2": 0.9174880470306432,
+      "cost_change_percent": 1.9431163367381377,
+      "total_mass_kg": 2.4849760940612864,
+      "reach_margin": 0.40736241951690594,
+      "ratios": {
+        "trace": 0.9752675197250651,
+        "vol_l6": 1.0406586313549047,
+        "vol_linf": 1.1000000005650759
+      },
+      "absolute": {
+        "trace": 0.15345462679574584,
+        "vol_l6": 0.00017269729431445505,
+        "vol_linf": 0.0001100364946403497
+      }
+    },
+    "A6-VM": {
+      "lengths": [
+        0.5011186988626224,
+        0.6454800749322003
+      ],
+      "cost_l1_plus_l2": 1.1465987737948227,
+      "cost_change_percent": 27.39986375498029,
+      "total_mass_kg": 2.9431975475896452,
+      "reach_margin": 0.7588022315119096,
+      "ratios": {
+        "trace": 0.7785787076506822,
+        "vol_l6": 1.2228057592036932,
+        "vol_linf": 1.365624195962531
+      },
+      "absolute": {
+        "trace": 0.12250639193575402,
+        "vol_l6": 0.00020292460920798532,
+        "vol_linf": 0.000136607726765972
+      }
+    }
+  },
+  "solver": {
+    "A4": {
+      "success": true,
+      "message": "Optimization terminated successfully",
+      "iterations": 2,
+      "requirement_met": true,
+      "cobyla_check": {
+        "lengths": [
+          0.3431420097496222,
+          0.34137424279665585
+        ],
+        "cost": 0.684516252546278,
+        "ratio": 1.2041323832716004,
+        "function_evaluations": 16
+      }
+    },
+    "A5": {
+      "success": true,
+      "message": "Optimization terminated successfully",
+      "iterations": 24,
+      "requirement_met": true,
+      "cobyla_check": {
+        "lengths": [
+          0.4351250678100397,
+          0.5092857874969076
+        ],
+        "cost": 0.9444108553069472,
+        "ratio": 1.0999999797796525,
+        "function_evaluations": 41
+      }
+    },
+    "A6": {
+      "success": true,
+      "message": "Optimization terminated successfully",
+      "iterations": 42,
+      "requirement_met": true,
+      "cobyla_check": {
+        "lengths": [
+          0.3957381846957467,
+          0.5217317163632569
+        ],
+        "cost": 0.9174699010590035,
+        "ratio": 1.0999994971290379,
+        "function_evaluations": 40
+      }
+    },
+    "A6-VM": {
+      "success": true,
+      "message": "Optimization terminated successfully",
+      "iterations": 7
+    }
+  },
+  "grid_check_cheapest_feasible": {
+    "A4": [
+      0.225,
+      0.4650000000000001
+    ],
+    "A5": [
+      0.43500000000000005,
+      0.51
+    ],
+    "A6": [
+      0.375,
+      0.555
+    ]
+  },
+  "A7_nonlinear_validation": {
+    "baseline": {
+      "median_relative_error": 0.0603420269686632,
+      "max_relative_error": 0.06096861386370631
+    },
+    "A6": {
+      "median_relative_error": 0.06167195591745034,
+      "max_relative_error": 0.062038111904815604
+    }
+  },
+  "runtime_s": 541.3
+}
